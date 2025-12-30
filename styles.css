@@ -1,0 +1,182 @@
+:root {
+  --brand-red: #e53935;
+  --brand-red-dark: #c62828;
+  --brand-dark: #1f2937;
+  --brand-light: #f8f9fb;
+  --radius: 1.25rem;
+}
+
+body {
+  color: var(--brand-dark);
+}
+
+/* HERO com contraste reforçado e nova imagem local */
+.hero {
+  min-height: 78vh;
+  position: relative;
+  background: url("images/restaurados.jpg") center/cover no-repeat;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom right,
+    rgba(198, 40, 40, 0.92),
+    rgba(183, 28, 28, 0.92)
+  );
+}
+.hero > .container {
+  position: relative;
+  z-index: 1;
+}
+.text-shadow {
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+.hero-copy {
+  color: #fff !important;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  max-width: 52ch;
+}
+
+/* UTILITÁRIOS */
+.text-brand {
+  color: var(--brand-red);
+}
+.bg-brand {
+  background-color: var(--brand-red);
+}
+.btn-brand {
+  --bs-btn-bg: var(--brand-red);
+  --bs-btn-border-color: var(--brand-red);
+  --bs-btn-hover-bg: var(--brand-red-dark);
+  --bs-btn-hover-border-color: var(--brand-red-dark);
+  --bs-btn-color: #fff;
+  --bs-btn-hover-color: #fff;
+}
+.btn-outline-brand {
+  --bs-btn-color: var(--brand-red);
+  --bs-btn-border-color: var(--brand-red);
+  --bs-btn-hover-bg: var(--brand-red);
+  --bs-btn-hover-border-color: var(--brand-red);
+  --bs-btn-hover-color: #fff;
+}
+.section-padding {
+  padding: 5rem 0;
+}
+.section-title {
+  position: relative;
+  display: inline-block;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+}
+.section-title::after {
+  content: "";
+  display: block;
+  width: 64px;
+  height: 3px;
+  margin: 0.75rem auto 0;
+  background: var(--brand-red);
+  border-radius: 999px;
+}
+
+/* FEATURE */
+.feature {
+  background: var(--brand-light);
+  border-radius: var(--radius);
+  transition: transform 0.25s ease;
+}
+.feature:hover {
+  transform: translateY(-2px);
+}
+
+/* CURSOS (cards no swiper) */
+.coursesSwiper {
+  padding-bottom: 3.5rem;
+}
+.course-card .card-img-top {
+  height: 200px;
+  object-fit: cover;
+}
+
+/* CURSOS: logo no lugar de foto */
+.logo-wrap {
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  background: linear-gradient(
+    135deg,
+    rgba(229, 57, 53, 0.08),
+    rgba(229, 57, 53, 0.03)
+  );
+  border-top-left-radius: 0.75rem;
+  border-top-right-radius: 0.75rem;
+}
+
+.course-logo {
+  max-height: 120px;
+  max-width: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.1));
+}
+
+.course-excerpt {
+  display: -webkit-box;
+  line-clamp: 3; /* padrão (ainda experimental) */
+  -webkit-line-clamp: 3; /* compatibilidade WebKit */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Modal */
+.modal-logo {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  border-radius: 12px;
+  background: rgba(229, 57, 53, 0.06);
+  padding: 8px;
+}
+
+/* NAV */
+.navbar .nav-link {
+  font-weight: 600;
+}
+.navbar .nav-link.active,
+.navbar .nav-link:hover {
+  color: var(--brand-red);
+}
+
+/* FORM */
+.form-control:focus {
+  border-color: var(--brand-red);
+  box-shadow: 0 0 0 0.25rem rgba(229, 57, 53, 0.15);
+}
+
+/* CANAIS OFICIAIS – ícones circulares */
+.social-icon {
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  color: #fff;
+  font-size: 1.1rem;
+}
+.social-icon.ig {
+  background: #e4405f;
+}
+.social-icon.lt {
+  background: var(--brand-red);
+}
+.social-icon.wb {
+  background: #2d3748;
+}
+
+/* FOOTER */
+footer {
+  background: #fff;
+}
