@@ -14,7 +14,7 @@ body {
 .hero {
   min-height: 78vh;
   position: relative;
-  background: url("images/restaurados.jpg") center/cover no-repeat;
+  background: url("images/hero.jpg") center/cover no-repeat;
 }
 .hero::before {
   content: "";
