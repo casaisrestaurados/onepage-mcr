@@ -180,3 +180,74 @@ body {
 footer {
   background: #fff;
 }
+
+/* =========================================================
+   AJUSTES RESPONSIVOS (MOBILE) — botões do HERO consistentes
+   ========================================================= */
+
+/* Container de botões do HERO: garante consistência e evita "botão gigante" no mobile */
+.hero .d-flex.gap-3,
+.hero .d-flex.gap-2 {
+  flex-wrap: wrap; /* desktop: permite quebrar com elegância se faltar espaço */
+}
+
+/* Botões: alinhamento e aparência consistente (desktop + mobile) */
+.btn-brand,
+.btn-outline-brand {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  border-radius: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1px;
+}
+
+/* Ícones dentro dos botões (Bootstrap Icons) */
+.btn-brand i,
+.btn-outline-brand i,
+.btn-brand .bi,
+.btn-outline-brand .bi {
+  line-height: 1;
+  font-size: 1.05em;
+}
+
+/* Mobile-first: no celular, botões ficam com mesma altura/largura e sem distorção visual */
+@media (max-width: 576px) {
+  /* Botões do hero em coluna e 100% largura */
+  .hero .d-flex.gap-3,
+  .hero .d-flex.gap-2 {
+    flex-direction: column;
+    gap: 0.75rem !important;
+    align-items: stretch;
+  }
+
+  .hero .btn-brand,
+  .hero .btn-outline-brand {
+    width: 100%;
+    padding: 0.7rem 1rem;
+    font-size: 0.98rem;
+    border-radius: 12px;
+  }
+
+  /* Evita quebra feia em duas linhas (quando houver ícone + texto) */
+  .hero .btn-brand,
+  .hero .btn-outline-brand {
+    white-space: normal;
+  }
+
+  /* Leve elevação para ficar mais "clicável" no touch (sutil) */
+  .hero .btn-brand {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.14);
+  }
+}
+
+/* Ajuste intermediário (tablets): melhora proporção sem mudar muito */
+@media (min-width: 577px) and (max-width: 991px) {
+  .hero .btn-brand,
+  .hero .btn-outline-brand {
+    padding: 0.75rem 1.1rem;
+    font-size: 1rem;
+    border-radius: 12px;
+  }
+}
