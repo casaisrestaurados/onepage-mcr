@@ -1,9 +1,9 @@
 // Ano do rodapé
-https: document.getElementById("year").textContent = new Date().getFullYear();
+document.getElementById("year").textContent = new Date().getFullYear();
 
 // ===== FORMULÁRIO (Google Apps Script) =====
 const FORM_ENDPOINT =
-  "https://script.google.com/macros/s/AKfycbzQ3zSfw5tO0qrmE4XKsc0YUSlKWqbMnwh-it0p2nfOrELQsHpfHgSCljcQGqWQD5_m/exec";
+  "https://script.google.com/macros/s/AKfycbwJ91TEbQseKgSfljiEpqnJ1dG3dwl3gchlc5r75HldTryPmMri0NF0iC0mqziKqTeB/exec";
 
 const form = document.getElementById("contactForm");
 const feedback = document.getElementById("formFeedback");
@@ -25,14 +25,14 @@ if (form) {
       return;
     }
 
-    const payload = {
+    const payload = new URLSearchParams({
       nome,
       whatsapp,
       email,
       mensagem,
       origem: window.location.href,
       userAgent: navigator.userAgent,
-    };
+    });
 
     try {
       if (btn) {
@@ -40,24 +40,15 @@ if (form) {
         btn.innerHTML = '<i class="bi bi-hourglass-split"></i> Enviando...';
       }
 
-      // 1) Tenta sendBeacon (não sofre com CORS como o fetch tradicional)
-      const blob = new Blob([JSON.stringify(payload)], {
-        type: "application/json",
+      // Envia como FORM (mais compatível com Apps Script)
+      await fetch(FORM_ENDPOINT, {
+        method: "POST",
+        mode: "no-cors",
+        body: payload,
       });
-      const okBeacon =
-        navigator.sendBeacon && navigator.sendBeacon(FORM_ENDPOINT, blob);
 
-      // 2) Se beacon não existir/falhar, faz fetch "no-cors" (sem ler resposta)
-      if (!okBeacon) {
-        await fetch(FORM_ENDPOINT, {
-          method: "POST",
-          mode: "no-cors",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        });
-      }
-
-      // Mostra sucesso no front
+      // Aqui não dá pra “confirmar status” por causa do no-cors,
+      // mas na prática o Apps Script recebe bem com e.parameter.
       feedback.classList.remove("d-none");
       form.reset();
     } catch (err) {
