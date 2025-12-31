@@ -3,7 +3,7 @@ https: document.getElementById("year").textContent = new Date().getFullYear();
 
 // ===== FORMULÁRIO (Google Apps Script) =====
 const FORM_ENDPOINT =
-  "//script.google.com/macros/s/AKfycbzQ3zSfw5tO0qrmE4XKsc0YUSlKWqbMnwh-it0p2nfOrELQsHpfHgSCljcQGqWQD5_m/exec";
+  "https://script.google.com/macros/s/AKfycbzQ3zSfw5tO0qrmE4XKsc0YUSlKWqbMnwh-it0p2nfOrELQsHpfHgSCljcQGqWQD5_m/exec";
 
 const form = document.getElementById("contactForm");
 const feedback = document.getElementById("formFeedback");
@@ -40,26 +40,28 @@ if (form) {
         btn.innerHTML = '<i class="bi bi-hourglass-split"></i> Enviando...';
       }
 
-      const res = await fetch(FORM_ENDPOINT, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
+      // 1) Tenta sendBeacon (não sofre com CORS como o fetch tradicional)
+      const blob = new Blob([JSON.stringify(payload)], {
+        type: "application/json",
       });
+      const okBeacon =
+        navigator.sendBeacon && navigator.sendBeacon(FORM_ENDPOINT, blob);
 
-      const data = await res.json().catch(() => null);
-
-      if (data && data.ok) {
-        feedback.classList.remove("d-none");
-        form.reset();
-      } else {
-        alert(
-          (data && data.message) || "Não foi possível enviar. Tente novamente."
-        );
+      // 2) Se beacon não existir/falhar, faz fetch "no-cors" (sem ler resposta)
+      if (!okBeacon) {
+        await fetch(FORM_ENDPOINT, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
       }
+
+      // Mostra sucesso no front
+      feedback.classList.remove("d-none");
+      form.reset();
     } catch (err) {
-      alert(
-        "Falha de conexão ao enviar. Verifique sua internet e tente novamente."
-      );
+      alert("Não foi possível enviar agora. Tente novamente em instantes.");
       console.error(err);
     } finally {
       if (btn) {
