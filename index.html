@@ -8,6 +8,7 @@
       name="description"
       content="Missão Casais Restaurados: quem somos, encontros e canais oficiais. As inscrições e novidades acontecem nas redes sociais."
     />
+
     <!-- Bootstrap -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
@@ -25,6 +26,7 @@
     />
     <!-- Styles -->
     <link href="styles.css" rel="stylesheet" />
+
     <!-- OG -->
     <meta
       property="og:title"
@@ -36,11 +38,10 @@
     />
     <meta property="og:image" content="images/hero.jpg" />
     <meta property="og:url" content="https://www.casaisrestaurados.com.br" />
-    <link
-      rel="icon"
-      href="images/logo_mcr.png"
-    />
+
+    <link rel="icon" href="images/logo_mcr.png" />
   </head>
+
   <body
     data-bs-spy="scroll"
     data-bs-target="#mainNav"
@@ -63,14 +64,19 @@
           />
           <span class="fw-bold">Missão Casais Restaurados</span>
         </a>
+
         <button
           class="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navContent"
+          aria-controls="navContent"
+          aria-expanded="false"
+          aria-label="Abrir menu"
         >
           <span class="navbar-toggler-icon"></span>
         </button>
+
         <div id="navContent" class="collapse navbar-collapse">
           <ul class="navbar-nav ms-auto align-items-lg-center">
             <li class="nav-item">
@@ -104,14 +110,10 @@
       <div class="container py-5">
         <div class="row align-items-center g-4">
           <div class="col-lg-6">
-            <!-- Opcional: microcopy; mantido comentado -->
-            <!-- <span class="badge bg-light text-brand fw-semibold mb-3">Página institucional</span> -->
-
             <h1 class="display-5 fw-bold text-white text-shadow">
               “Se Deus quer, nós queremos!”
             </h1>
 
-            <!-- TODO: texto do PDF (apresentação/propósito) -->
             <p class="lead hero-copy mt-3">
               Somos uma inspiração de Deus! Nossa missão é fortalecer a
               espiritualidade conjugal e ajudar os casais a redescobrirem a
@@ -144,7 +146,6 @@
                 loading="lazy"
               />
             </div>
-            <!-- badges removidos para simplificar -->
           </div>
         </div>
       </div>
@@ -155,9 +156,8 @@
       <div class="container">
         <div class="row justify-content-center text-center mb-4">
           <div class="col-lg-8">
-            <h2 class="section-title">Nosso propósito</h2>
+            <h2 class="section-title">Nosso Propósito</h2>
 
-            <!-- TODO: texto do PDF (história/identidade em versão integral se for curto) -->
             <p class="lead text-muted">
               Devolver para as paróquias casais mais conscientes da sua missão
               de batizados e casados. Nossa missão nasceu com a bênção do então
@@ -204,6 +204,213 @@
       </div>
     </section>
 
+    <!-- COMEMORATIVA -->
+    <section class="section-padding commemorative">
+      <div class="container text-center">
+        <h3 class="section-title mb-4">Nossa História e Comunhão</h3>
+
+        <p class="mb-5 commemorative-text">
+          Celebramos com gratidão os frutos de uma caminhada construída na fé,
+          em comunhão com a Igreja e a serviço das famílias.
+        </p>
+
+        <div class="row justify-content-center align-items-center g-4">
+          <!-- Logo 12 anos -->
+          <div class="col-12 col-md-4">
+            <div class="commemorative-card">
+              <img
+                src="images/logo-12-anos.png"
+                alt="Missão Casais Restaurados – 12 anos"
+                class="commemorative-logo"
+                loading="lazy"
+              />
+              <span class="commemorative-label">12 anos de Missão</span>
+            </div>
+          </div>
+
+          <!-- Logo Diocese -->
+          <div class="col-12 col-md-4">
+            <a
+              href="https://diocesepetropolis.com.br/"
+              target="_blank"
+              rel="noopener"
+              class="commemorative-link"
+              aria-label="Acessar o site da Diocese de Petrópolis"
+            >
+              <div class="commemorative-card">
+                <img
+                  src="images/logo-diocese-80-anos.png"
+                  alt="Diocese de Petrópolis – 80 anos"
+                  class="commemorative-logo"
+                  loading="lazy"
+                />
+                <span class="commemorative-label">
+                  Diocese de Petrópolis – 80 anos
+                  <i class="bi bi-box-arrow-up-right ms-1"></i>
+                </span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LOUVOR PARA CASAIS (AGENDA FIXA) -->
+    <section id="louvor" class="section-padding bg-white">
+      <div class="container">
+        <!-- TÍTULO CENTRALIZADO + SEM BOTÃO -->
+        <div class="row justify-content-center text-center mb-4">
+          <div class="col-lg-8">
+            <h2 class="section-title">Louvor para Casais</h2>
+            <p class="text-muted mb-0">
+              Encontro aberto para todos, com horário fixo. Clique em um card
+              para abrir a localização no Maps.
+            </p>
+          </div>
+        </div>
+
+        <div class="row g-4 mt-1">
+          <!-- Petrópolis -->
+          <div class="col-12 col-md-4">
+            <a
+              class="louvor-card"
+              href="https://maps.app.goo.gl/eq9amMCt2UoZGZBC8"
+              target="_blank"
+              rel="noopener"
+              aria-label="Abrir localização no Maps: Paróquia São José de Itaipava (Petrópolis)"
+            >
+              <div class="louvor-card__top">
+                <span class="louvor-badge">
+                  <i class="bi bi-calendar2-week"></i> 1º sábado do mês
+                </span>
+              </div>
+
+              <div class="louvor-card__body">
+                <h5 class="louvor-title">Petrópolis</h5>
+                <div class="louvor-meta">
+                  <span><i class="bi bi-clock"></i> 20h</span>
+                  <span class="dot">•</span>
+                  <span><i class="bi bi-geo-alt"></i> Itaipava</span>
+                </div>
+
+                <p class="louvor-place mb-0">Paróquia São José de Itaipava</p>
+              </div>
+
+              <div class="louvor-card__cta">
+                <span class="louvor-maps">
+                  <i class="bi bi-map"></i> Ver no Maps
+                  <i class="bi bi-box-arrow-up-right ms-1"></i>
+                </span>
+              </div>
+            </a>
+          </div>
+
+          <!-- Teresópolis -->
+          <div class="col-12 col-md-4">
+            <a
+              class="louvor-card"
+              href="https://maps.app.goo.gl/6jWNp9BpWRe2GcBY8"
+              target="_blank"
+              rel="noopener"
+              aria-label="Abrir localização no Maps: Capela Nossa Senhora das Graças (Teresópolis)"
+            >
+              <div class="louvor-card__top">
+                <span class="louvor-badge">
+                  <i class="bi bi-calendar2-week"></i> 3º sábado do mês
+                </span>
+              </div>
+
+              <div class="louvor-card__body">
+                <h5 class="louvor-title">Teresópolis</h5>
+                <div class="louvor-meta">
+                  <span><i class="bi bi-clock"></i> 20h</span>
+                  <span class="dot">•</span>
+                  <span><i class="bi bi-geo-alt"></i> Espanhol</span>
+                </div>
+
+                <p class="louvor-place mb-0">Capela Nossa Senhora das Graças</p>
+              </div>
+
+              <div class="louvor-card__cta">
+                <span class="louvor-maps">
+                  <i class="bi bi-map"></i> Ver no Maps
+                  <i class="bi bi-box-arrow-up-right ms-1"></i>
+                </span>
+              </div>
+            </a>
+          </div>
+
+          <!-- Baixada -->
+          <div class="col-12 col-md-4">
+            <a
+              class="louvor-card"
+              href="https://maps.app.goo.gl/1ZeBDG8tW126NUCU6"
+              target="_blank"
+              rel="noopener"
+              aria-label="Abrir localização no Maps: Capela Nossa Senhora das Graças (Piabetá - Baixada)"
+            >
+              <div class="louvor-card__top">
+                <span class="louvor-badge">
+                  <i class="bi bi-calendar2-week"></i> 4ª sexta-feira do mês
+                </span>
+              </div>
+
+              <div class="louvor-card__body">
+                <h5 class="louvor-title">Piabetá</h5>
+                <div class="louvor-meta">
+                  <span><i class="bi bi-clock"></i> 20h</span>
+                  <span class="dot">•</span>
+                  <span><i class="bi bi-geo-alt"></i> Parque Santana</span>
+                </div>
+
+                <p class="louvor-place mb-0">Capela Nossa Senhora das Graças</p>
+              </div>
+
+              <div class="louvor-card__cta">
+                <span class="louvor-maps">
+                  <i class="bi bi-map"></i> Ver no Maps
+                  <i class="bi bi-box-arrow-up-right ms-1"></i>
+                </span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <p class="text-muted small mt-4 mb-0">
+          Observação: datas especiais e alterações pontuais são divulgadas pelos
+          canais oficiais.
+        </p>
+      </div>
+    </section>
+
+    <!-- CALENDÁRIO 2026 (IMAGEM LOCAL) -->
+    <section id="calendario" class="section-padding bg-light">
+      <div class="container">
+        <div class="row justify-content-center text-center mb-4">
+          <div class="col-lg-8">
+            <h2 class="section-title">Calendário 2026</h2>
+            <p class="text-muted mb-0">
+              Datas dos encontros e cursos ao longo do ano. Em caso de
+              retificações, a divulgação oficial acontece pelas redes.
+            </p>
+          </div>
+        </div>
+
+        <div class="row justify-content-center">
+          <div class="col-12 col-lg-8">
+            <figure class="calendar-figure mb-0">
+              <img
+                src="images/calendario-2026.png"
+                alt="Calendário 2026 — encontros e cursos"
+                class="calendar-img"
+                loading="lazy"
+              />
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- CURSOS (CARROSSEL) -->
     <section id="cursos" class="section-padding bg-light">
       <div class="container">
@@ -229,6 +436,8 @@
 
         <div class="swiper coursesSwiper">
           <div class="swiper-wrapper">
+            <!-- (seus 8 slides permanecem iguais) -->
+
             <!-- 1 -->
             <div class="swiper-slide">
               <article class="course-card card h-100 shadow-sm border-0">
@@ -442,7 +651,6 @@
                   <img
                     src="images/logo-restaurados.png"
                     alt="Logotipo Restaurados pelo Amor"
-                    known="true"
                     class="course-logo"
                     loading="lazy"
                   />
@@ -567,7 +775,7 @@
       </div>
     </section>
 
-    <!-- MODAL: descrição completa -->
+    <!-- MODAL -->
     <div
       class="modal fade"
       id="courseModal"
@@ -620,7 +828,6 @@
           <div class="col-lg-9">
             <i class="bi bi-chat-quote fs-1 text-brand"></i>
             <h2 class="section-title">Um testemunho que nos move</h2>
-            <!-- TODO: texto do PDF (um trecho de prova social) -->
             <p class="lead text-muted">
               “Após o encontro, sentimos o chamado para servir e hoje atuamos na
               Pastoral da Crisma, ajudando jovens a fortalecerem sua fé. A
@@ -633,11 +840,10 @@
       </div>
     </section>
 
-    <!-- CONTATO + CANAIS OFICIAIS -->
+    <!-- CONTATO -->
     <section id="contato" class="section-padding bg-light">
       <div class="container">
         <div class="row g-5">
-          <!-- Contato -->
           <div class="col-lg-6">
             <h2 class="section-title">Fale Conosco</h2>
             <p class="text-muted">
@@ -686,7 +892,6 @@
             </form>
           </div>
 
-          <!-- Canais Oficiais -->
           <div class="col-lg-6">
             <div class="p-4 bg-white rounded-4 shadow-sm h-100">
               <h5 class="mb-3">Canais Oficiais</h5>
@@ -728,13 +933,7 @@
                   <i class="bi bi-arrow-up-right"></i>
                 </a>
               </div>
-
-              <!-- Slot para "Parceiros" (opcional) -->
-              <!--
-            <hr class="my-4">
-            <h6 class="text-uppercase text-muted small">Parceiros</h6>
-            <div class="row g-2"> ... </div>
-            --></div>
+            </div>
           </div>
         </div>
       </div>

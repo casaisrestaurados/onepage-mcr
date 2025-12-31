@@ -10,7 +10,9 @@ body {
   color: var(--brand-dark);
 }
 
-/* HERO com contraste reforçado e nova imagem local */
+/* =========================================================
+   HERO
+   ========================================================= */
 .hero {
   min-height: 78vh;
   position: relative;
@@ -39,7 +41,9 @@ body {
   max-width: 52ch;
 }
 
-/* UTILITÁRIOS */
+/* =========================================================
+   UTILITÁRIOS
+   ========================================================= */
 .text-brand {
   color: var(--brand-red);
 }
@@ -68,7 +72,6 @@ body {
   position: relative;
   display: inline-block;
   font-weight: 800;
-  letter-spacing: 0.2px;
 }
 .section-title::after {
   content: "";
@@ -80,7 +83,9 @@ body {
   border-radius: 999px;
 }
 
-/* FEATURE */
+/* =========================================================
+   FEATURE
+   ========================================================= */
 .feature {
   background: var(--brand-light);
   border-radius: var(--radius);
@@ -90,16 +95,38 @@ body {
   transform: translateY(-2px);
 }
 
-/* CURSOS (cards no swiper) */
+/* =========================================================
+   CURSOS / SWIPER
+   ========================================================= */
 .coursesSwiper {
+  position: relative;
   padding-bottom: 3.5rem;
-}
-.course-card .card-img-top {
-  height: 200px;
-  object-fit: cover;
+  padding-left: 64px;
+  padding-right: 64px;
 }
 
-/* CURSOS: logo no lugar de foto */
+/* garante slides e cards com mesma lógica de altura */
+.coursesSwiper .swiper-slide {
+  display: flex;
+  height: auto;
+}
+.coursesSwiper .swiper-slide > * {
+  width: 100%;
+}
+
+/* Card ocupa toda a altura disponível */
+.course-card {
+  height: 100%;
+}
+.course-card .card-body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* =========================================================
+   LOGO NO LUGAR DE FOTO
+   ========================================================= */
 .logo-wrap {
   height: 180px;
   display: flex;
@@ -122,25 +149,96 @@ body {
   filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.1));
 }
 
+/* =========================================================
+   RESUMO — TEXTO INTEGRAL (SEM RETICÊNCIAS)
+   Altura será igualada via JS
+   ========================================================= */
 .course-excerpt {
-  display: -webkit-box;
-  line-clamp: 3; /* padrão (ainda experimental) */
-  -webkit-line-clamp: 3; /* compatibilidade WebKit */
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+  display: block;
+  overflow: visible;
+  line-height: 1.5;
+  height: auto;
+  margin-bottom: 0.75rem;
 }
 
-/* Modal */
+/* Botões sempre no rodapé do card */
+.course-card .d-flex.gap-2,
+.course-card .card-actions {
+  margin-top: auto;
+}
+
+/* =========================================================
+   SETAS DO SWIPER — FORA DOS CARDS (DESKTOP)
+   ========================================================= */
+.coursesSwiper .swiper-button-prev,
+.coursesSwiper .swiper-button-next {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--brand-red);
+  width: 44px;
+  height: 44px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 999px;
+  background: #ffffff;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
+}
+.coursesSwiper .swiper-button-prev {
+  left: 12px;
+}
+.coursesSwiper .swiper-button-next {
+  right: 12px;
+}
+.coursesSwiper .swiper-button-prev::after,
+.coursesSwiper .swiper-button-next::after {
+  font-size: 18px;
+  font-weight: 900;
+}
+
+/* Tablets */
+@media (max-width: 992px) {
+  .coursesSwiper {
+    padding-left: 52px;
+    padding-right: 52px;
+  }
+}
+
+/* Mobile: swipe + dots, sem setas */
+@media (max-width: 576px) {
+  .coursesSwiper {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .coursesSwiper .swiper-button-prev,
+  .coursesSwiper .swiper-button-next {
+    display: none !important;
+  }
+}
+
+/* =========================================================
+   MODAL — CORREÇÃO DA IMAGEM (SAIBA MAIS)
+   ========================================================= */
 .modal-logo {
-  width: 56px;
-  height: 56px;
+  max-width: 100%;
+  max-height: 180px;
+  width: auto;
+  height: auto;
   object-fit: contain;
-  border-radius: 12px;
-  background: rgba(229, 57, 53, 0.06);
-  padding: 8px;
+  display: block;
+}
+.modal-header {
+  align-items: center;
+}
+@media (max-width: 576px) {
+  .modal-logo {
+    max-height: 140px;
+  }
 }
 
-/* NAV */
+/* =========================================================
+   NAV / FORM
+   ========================================================= */
 .navbar .nav-link {
   font-weight: 600;
 }
@@ -148,14 +246,14 @@ body {
 .navbar .nav-link:hover {
   color: var(--brand-red);
 }
-
-/* FORM */
 .form-control:focus {
   border-color: var(--brand-red);
   box-shadow: 0 0 0 0.25rem rgba(229, 57, 53, 0.15);
 }
 
-/* CANAIS OFICIAIS – ícones circulares */
+/* =========================================================
+   REDES / FOOTER
+   ========================================================= */
 .social-icon {
   width: 40px;
   height: 40px;
@@ -164,7 +262,6 @@ body {
   justify-content: center;
   border-radius: 999px;
   color: #fff;
-  font-size: 1.1rem;
 }
 .social-icon.ig {
   background: #e4405f;
@@ -176,78 +273,200 @@ body {
   background: #2d3748;
 }
 
-/* FOOTER */
 footer {
   background: #fff;
 }
 
 /* =========================================================
-   AJUSTES RESPONSIVOS (MOBILE) — botões do HERO consistentes
+   SEÇÃO COMEMORATIVA (inclui correção do link da Diocese)
    ========================================================= */
-
-/* Container de botões do HERO: garante consistência e evita "botão gigante" no mobile */
-.hero .d-flex.gap-3,
-.hero .d-flex.gap-2 {
-  flex-wrap: wrap; /* desktop: permite quebrar com elegância se faltar espaço */
+.commemorative {
+  background: #fff;
 }
 
-/* Botões: alinhamento e aparência consistente (desktop + mobile) */
-.btn-brand,
-.btn-outline-brand {
+.commemorative-text {
+  max-width: 760px;
+  margin: 0 auto;
+  color: #4b5563;
+  font-size: 1.05rem;
+}
+
+.commemorative-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.commemorative-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+}
+
+.commemorative-logo {
+  max-height: 120px;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.commemorative-label {
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-align: center;
+  color: var(--brand-dark);
+}
+
+/* correção do “azul sublinhado” */
+.commemorative-link {
+  display: block;
+  text-decoration: none !important;
+  color: inherit !important;
+}
+
+.commemorative-link:hover,
+.commemorative-link:focus,
+.commemorative-link:active,
+.commemorative-link:visited {
+  text-decoration: none !important;
+  color: inherit !important;
+  outline: none;
+}
+
+/* Mobile refinements */
+@media (max-width: 576px) {
+  .commemorative-card {
+    padding: 1.5rem 1.25rem;
+  }
+  .commemorative-logo {
+    max-height: 100px;
+  }
+  .commemorative-text {
+    font-size: 1rem;
+  }
+}
+
+/* =========================================================
+   LOUVOR PARA CASAIS (AGENDA FIXA)
+   ========================================================= */
+
+.louvor-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.louvor-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+}
+
+.louvor-card__top {
+  padding: 1.25rem 1.25rem 0;
+}
+
+.louvor-badge {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: 0.55rem;
-  border-radius: 12px;
-  font-weight: 600;
+  gap: 0.45rem;
+  padding: 0.45rem 0.75rem;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--brand-red-dark);
+  background: rgba(229, 57, 53, 0.1);
+  border: 1px solid rgba(229, 57, 53, 0.18);
+}
+
+.louvor-card__body {
+  padding: 1rem 1.25rem 1.1rem;
+}
+
+.louvor-title {
+  margin: 0;
+  font-weight: 800;
   letter-spacing: 0.1px;
 }
 
-/* Ícones dentro dos botões (Bootstrap Icons) */
-.btn-brand i,
-.btn-outline-brand i,
-.btn-brand .bi,
-.btn-outline-brand .bi {
+.louvor-meta {
+  margin-top: 0.5rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  color: #6b7280;
+  font-size: 0.95rem;
+}
+
+.louvor-meta i {
+  color: var(--brand-red);
+}
+
+.louvor-meta .dot {
+  color: #cbd5e1;
+}
+
+.louvor-place {
+  margin-top: 0.7rem;
+  color: #374151;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.louvor-card__cta {
+  margin-top: auto;
+  padding: 0.95rem 1.25rem 1.15rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.louvor-maps {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 800;
+  color: var(--brand-red);
+}
+
+.louvor-maps i {
   line-height: 1;
-  font-size: 1.05em;
 }
 
-/* Mobile-first: no celular, botões ficam com mesma altura/largura e sem distorção visual */
+/* Mobile refinements */
 @media (max-width: 576px) {
-  /* Botões do hero em coluna e 100% largura */
-  .hero .d-flex.gap-3,
-  .hero .d-flex.gap-2 {
-    flex-direction: column;
-    gap: 0.75rem !important;
-    align-items: stretch;
+  .louvor-card__top {
+    padding: 1.1rem 1.1rem 0;
   }
-
-  .hero .btn-brand,
-  .hero .btn-outline-brand {
-    width: 100%;
-    padding: 0.7rem 1rem;
-    font-size: 0.98rem;
-    border-radius: 12px;
+  .louvor-card__body {
+    padding: 0.9rem 1.1rem 1rem;
   }
-
-  /* Evita quebra feia em duas linhas (quando houver ícone + texto) */
-  .hero .btn-brand,
-  .hero .btn-outline-brand {
-    white-space: normal;
-  }
-
-  /* Leve elevação para ficar mais "clicável" no touch (sutil) */
-  .hero .btn-brand {
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.14);
+  .louvor-card__cta {
+    padding: 0.9rem 1.1rem 1.05rem;
   }
 }
 
-/* Ajuste intermediário (tablets): melhora proporção sem mudar muito */
-@media (min-width: 577px) and (max-width: 991px) {
-  .hero .btn-brand,
-  .hero .btn-outline-brand {
-    padding: 0.75rem 1.1rem;
-    font-size: 1rem;
-    border-radius: 12px;
-  }
+/* =========================================================
+   CALENDÁRIO 2026 (IMAGEM)
+   ========================================================= */
+.calendar-figure {
+  margin: 0;
+}
+
+.calendar-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
 }
