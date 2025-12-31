@@ -1,14 +1,72 @@
 // Ano do rodapé
-document.getElementById("year").textContent = new Date().getFullYear();
+https: document.getElementById("year").textContent = new Date().getFullYear();
 
-// Mock do formulário (trocaremos pelo Apps Script/Formspree quando você quiser)
+// ===== FORMULÁRIO (Google Apps Script) =====
+const FORM_ENDPOINT =
+  "//script.google.com/macros/s/AKfycbzQ3zSfw5tO0qrmE4XKsc0YUSlKWqbMnwh-it0p2nfOrELQsHpfHgSCljcQGqWQD5_m/exec";
+
 const form = document.getElementById("contactForm");
 const feedback = document.getElementById("formFeedback");
+
 if (form) {
-  form.addEventListener("submit", (e) => {
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
-    feedback.classList.remove("d-none");
-    form.reset();
+
+    const btn = form.querySelector('button[type="submit"]');
+    feedback.classList.add("d-none");
+
+    const nome = form.querySelector('input[type="text"]').value.trim();
+    const whatsapp = form.querySelector('input[type="tel"]').value.trim();
+    const email = form.querySelector('input[type="email"]').value.trim();
+    const mensagem = form.querySelector("textarea").value.trim();
+
+    if (!nome || !email || !mensagem) {
+      alert("Por favor, preencha Nome, E-mail e Mensagem.");
+      return;
+    }
+
+    const payload = {
+      nome,
+      whatsapp,
+      email,
+      mensagem,
+      origem: window.location.href,
+      userAgent: navigator.userAgent,
+    };
+
+    try {
+      if (btn) {
+        btn.disabled = true;
+        btn.innerHTML = '<i class="bi bi-hourglass-split"></i> Enviando...';
+      }
+
+      const res = await fetch(FORM_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await res.json().catch(() => null);
+
+      if (data && data.ok) {
+        feedback.classList.remove("d-none");
+        form.reset();
+      } else {
+        alert(
+          (data && data.message) || "Não foi possível enviar. Tente novamente."
+        );
+      }
+    } catch (err) {
+      alert(
+        "Falha de conexão ao enviar. Verifique sua internet e tente novamente."
+      );
+      console.error(err);
+    } finally {
+      if (btn) {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="bi bi-send"></i> Enviar mensagem';
+      }
+    }
   });
 }
 
