@@ -470,3 +470,51 @@ footer {
   background: #fff;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
 }
+
+/* =========================================================
+   HERO — BOTÕES MOBILE (correção definitiva)
+   ========================================================= */
+
+/* Garante que o wrapper dos botões no HERO se comporte bem */
+.hero .hero-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap; /* desktop/tablet */
+}
+
+/* Botões com aparência consistente */
+.hero .hero-actions .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  border-radius: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1px;
+}
+
+/* Ícones dentro dos botões (Bootstrap Icons) */
+.hero .hero-actions .btn i,
+.hero .hero-actions .btn .bi {
+  line-height: 1;
+  font-size: 1.05em;
+}
+
+/* Mobile: botões em coluna, 100% largura, alturas iguais */
+@media (max-width: 576px) {
+  .hero .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+    flex-wrap: nowrap;
+    gap: 0.75rem;
+  }
+
+  .hero .hero-actions .btn {
+    width: 100%;
+    min-height: 52px; /* força mesma altura */
+    padding: 0.85rem 1rem; /* “tamanho de toque” */
+    font-size: 1rem;
+    white-space: normal; /* permite quebrar sem deformar */
+    text-align: center;
+  }
+}
