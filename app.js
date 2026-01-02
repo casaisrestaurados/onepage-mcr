@@ -1,68 +1,6 @@
 // Ano do rodapé
 document.getElementById("year").textContent = new Date().getFullYear();
 
-// ===== FORMULÁRIO (Google Apps Script) =====
-const FORM_ENDPOINT =
-  "https://script.google.com/macros/s/AKfycbwJ91TEbQseKgSfljiEpqnJ1dG3dwl3gchlc5r75HldTryPmMri0NF0iC0mqziKqTeB/exec";
-
-const form = document.getElementById("contactForm");
-const feedback = document.getElementById("formFeedback");
-
-if (form) {
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const btn = form.querySelector('button[type="submit"]');
-    feedback.classList.add("d-none");
-
-    const nome = form.querySelector('input[type="text"]').value.trim();
-    const whatsapp = form.querySelector('input[type="tel"]').value.trim();
-    const email = form.querySelector('input[type="email"]').value.trim();
-    const mensagem = form.querySelector("textarea").value.trim();
-
-    if (!nome || !email || !mensagem) {
-      alert("Por favor, preencha Nome, E-mail e Mensagem.");
-      return;
-    }
-
-    const payload = new URLSearchParams({
-      nome,
-      whatsapp,
-      email,
-      mensagem,
-      origem: window.location.href,
-      userAgent: navigator.userAgent,
-    });
-
-    try {
-      if (btn) {
-        btn.disabled = true;
-        btn.innerHTML = '<i class="bi bi-hourglass-split"></i> Enviando...';
-      }
-
-      // Envia como FORM (mais compatível com Apps Script)
-      await fetch(FORM_ENDPOINT, {
-        method: "POST",
-        mode: "no-cors",
-        body: payload,
-      });
-
-      // Aqui não dá pra “confirmar status” por causa do no-cors,
-      // mas na prática o Apps Script recebe bem com e.parameter.
-      feedback.classList.remove("d-none");
-      form.reset();
-    } catch (err) {
-      alert("Não foi possível enviar agora. Tente novamente em instantes.");
-      console.error(err);
-    } finally {
-      if (btn) {
-        btn.disabled = false;
-        btn.innerHTML = '<i class="bi bi-send"></i> Enviar mensagem';
-      }
-    }
-  });
-}
-
 // Carrossel de cursos (Swiper)
 const coursesSwiper = new Swiper(".coursesSwiper", {
   slidesPerView: 1,
