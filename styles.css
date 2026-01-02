@@ -518,3 +518,26 @@ footer {
     text-align: center;
   }
 }
+
+.contact-cta {
+  max-width: 520px;
+}
+
+/* =========================================================
+   COMEMORATIVA — trigger clicável sem "cara" de botão
+   ========================================================= */
+.commemorative-trigger {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  text-align: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.commemorative-trigger:focus-visible {
+  outline: 3px solid rgba(229, 57, 53, 0.35);
+  outline-offset: 6px;
+  border-radius: 16px;
+}

@@ -218,17 +218,27 @@
         </p>
 
         <div class="row justify-content-center align-items-center g-4">
-          <!-- Logo 12 anos -->
+          <!-- Logo 12 anos (clicável - abre histórico) -->
           <div class="col-12 col-md-4">
-            <div class="commemorative-card">
-              <img
-                src="images/logo-12-anos.png"
-                alt="Missão Casais Restaurados – 12 anos"
-                class="commemorative-logo"
-                loading="lazy"
-              />
-              <span class="commemorative-label">12 anos de Missão</span>
-            </div>
+            <button
+              type="button"
+              class="commemorative-trigger"
+              data-bs-toggle="modal"
+              data-bs-target="#historyModal"
+              aria-label="Abrir histórico da Missão Casais Restaurados"
+            >
+              <div class="commemorative-card">
+                <img
+                  src="images/logo-12-anos.png"
+                  alt="Missão Casais Restaurados – 12 anos"
+                  class="commemorative-logo"
+                  loading="lazy"
+                />
+                <span class="commemorative-label">
+                  12 anos de Missão <i class="bi bi-plus-circle ms-1"></i>
+                </span>
+              </div>
+            </button>
           </div>
 
           <!-- Logo Diocese -->
@@ -823,6 +833,88 @@
       </div>
     </div>
 
+    <!-- MODAL: HISTÓRICO (12 ANOS) -->
+    <div
+      class="modal fade"
+      id="historyModal"
+      tabindex="-1"
+      aria-labelledby="historyModalLabel"
+      aria-hidden="true"
+    >
+      <div
+        class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg"
+      >
+        <div class="modal-content">
+          <div class="modal-header">
+            <div class="d-flex align-items-center gap-3">
+              <img
+                src="images/logo-12-anos.png"
+                alt="Missão Casais Restaurados – 12 anos"
+                class="modal-logo"
+              />
+              <h5 class="modal-title" id="historyModalLabel">
+                História da Missão Casais Restaurados
+              </h5>
+            </div>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Fechar"
+            ></button>
+          </div>
+
+          <div class="modal-body">
+            <p class="text-muted">
+              A Missão Casais Restaurados nasceu como um chamado de Deus para
+              fortalecer o matrimônio e a vida familiar na Diocese de
+              Petrópolis. Em 27 de dezembro de 2013, recebemos a bênção de Dom
+              Gregório Paixão para iniciar um trabalho diocesano, então chamado
+              “Projeto Casais Restaurados”, com o objetivo de anunciar uma boa
+              nova aos casais e reacender a esperança nas famílias.
+            </p>
+
+            <p class="text-muted">
+              Nos primeiros anos, vivemos um tempo intenso de graça: com oração,
+              trabalho e o apoio de vários casais, o sonho se tornou concreto
+              com a realização do 1º Acampamento de Casais — um verdadeiro
+              resgate do “primeiro amor” e uma profunda declaração do amor de
+              Deus ao casal. Em seguida vieram novas edições do acampamento e
+              também o Acampamento de Família, permitindo que pais e filhos
+              experimentassem juntos a presença do Senhor e o desejo de “ser
+              família do céu aqui na terra”.
+            </p>
+
+            <p class="text-muted">
+              Com o amadurecimento da caminhada, Deus foi formando uma
+              comunidade de casais orantes e missionários, sustentada pela
+              oração, pela Eucaristia, pela escuta da Palavra e pela proteção de
+              Nossa Senhora. O Louvor para Casais, com encontro mensal,
+              tornou-se um ponto de comunhão e envio missionário.
+            </p>
+
+            <p class="text-muted mb-0">
+              Hoje, como missão diocesana, seguimos devolvendo às paróquias
+              casais mais conscientes da sua vocação de batizados e casados, com
+              o apoio do nosso bispo Dom Joel Portella Amado, respondendo ao
+              chamado para a nova evangelização com novo ardor e renovada
+              esperança.
+            </p>
+          </div>
+
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-outline-brand"
+              data-bs-dismiss="modal"
+            >
+              Fechar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- DEPOIMENTO -->
     <section id="depoimento" class="section-padding bg-white">
       <div class="container">
@@ -863,6 +955,16 @@
                 rel="noopener"
               >
                 <i class="bi bi-instagram"></i> Enviar mensagem na DM
+              </a>
+
+              <a
+                class="btn btn-outline-brand"
+                href="https://wa.me/5524988014295?text=Ol%C3%A1%21%20Vim%20pelo%20site%20da%20Miss%C3%A3o%20Casais%20Restaurados%20e%20gostaria%20de%20falar%20com%20a%20equipe."
+                target="_blank"
+                rel="noopener"
+                aria-label="Enviar mensagem no WhatsApp"
+              >
+                <i class="bi bi-whatsapp"></i> WhatsApp
               </a>
 
               <a
