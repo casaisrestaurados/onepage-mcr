@@ -47,6 +47,11 @@ section[id] {
   scroll-margin-top: 90px;
 }
 
+/* Garante que o topo real não “ganhe” margem por fallback */
+#home {
+  scroll-margin-top: 0px;
+}
+
 /* =========================================================
    TÍTULOS
    ========================================================= */

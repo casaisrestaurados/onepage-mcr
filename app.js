@@ -12,7 +12,17 @@ function getNavOffset(extra = 12) {
   return Math.ceil(h + extra);
 }
 
+function scrollToTopSmooth() {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
 function smoothScrollWithOffset(targetEl) {
+  // #home deve ir ao topo real, sem offset
+  if (!targetEl || targetEl.id === "home") {
+    scrollToTopSmooth();
+    return;
+  }
+
   const offset = getNavOffset(12);
   const top = window.scrollY + targetEl.getBoundingClientRect().top - offset;
   window.scrollTo({ top, behavior: "smooth" });
@@ -39,13 +49,8 @@ function equalizeMinHeights(selector) {
 }
 
 function runEqualizers() {
-  // Cursos: iguala os resumos (mantém seu comportamento atual)
   equalizeMinHeights(".course-excerpt");
-
-  // Comemorativa: iguala altura dos cards (12 anos e diocese)
   equalizeMinHeights(".commemorative-card");
-
-  // Depoimentos: iguala altura dos cards
   equalizeMinHeights(".testimonial-card");
 }
 
@@ -96,26 +101,55 @@ const testimonialsSwiper = new Swiper(".testimonialsSwiper", {
 });
 
 // =========================================================
-// Âncoras com offset do menu sticky (corrige “Cursos”)
+// Âncoras internas com offset do menu sticky
+// - Aplica no menu, logo, rodapé etc.
+// - Ignora links de modal e hashes vazios
 // =========================================================
-document.querySelectorAll('a.nav-link[href^="#"]').forEach((a) => {
+function closeMobileNavIfOpen() {
+  const navContent = document.getElementById("navContent");
+  if (!navContent) return;
+
+  // Se estiver aberto (classe show), fecha via Bootstrap Collapse
+  if (navContent.classList.contains("show") && window.bootstrap?.Collapse) {
+    const instance = window.bootstrap.Collapse.getOrCreateInstance(navContent);
+    instance.hide();
+  }
+}
+
+document.querySelectorAll('a[href^="#"]').forEach((a) => {
   a.addEventListener("click", (e) => {
+    // Não mexer em triggers de modal
+    if (a.hasAttribute("data-bs-toggle")) return;
+
     const href = a.getAttribute("href");
-    const target = href ? document.querySelector(href) : null;
-    if (!target) return;
+    if (!href || href === "#" || href.length < 2) return;
+
+    const targetEl = document.querySelector(href);
+    if (!targetEl) return;
 
     e.preventDefault();
-    smoothScrollWithOffset(target);
+    smoothScrollWithOffset(targetEl);
 
     // Atualiza o hash sem “pulo”
     history.pushState(null, "", href);
+
+    // Fecha o menu mobile após clicar
+    closeMobileNavIfOpen();
   });
 });
 
 // Se a página abrir com hash (#cursos, etc), aplica offset também
 window.addEventListener("load", () => {
   const hash = window.location.hash;
-  const target = hash ? document.querySelector(hash) : null;
+
+  // Se for topo, garante topo real
+  if (!hash || hash === "#home") {
+    // não força scroll; mas se veio com #home, remove o "gap"
+    if (hash === "#home") setTimeout(scrollToTopSmooth, 30);
+    return;
+  }
+
+  const target = document.querySelector(hash);
   if (target) setTimeout(() => smoothScrollWithOffset(target), 50);
 });
 
