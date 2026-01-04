@@ -14,6 +14,19 @@
       content="Missão Casais Restaurados: quem somos, encontros e canais oficiais. As inscrições e novidades acontecem nas redes sociais."
     />
 
+    <!-- (Ação 04) Performance: preconnect/dns-prefetch para CDNs -->
+    <link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+
+    <!-- (Ação 03) Preload do LCP (imagem principal do HERO em WebP) -->
+    <link
+      rel="preload"
+      as="image"
+      href="https://www.casaisrestaurados.com.br/images/hero.webp"
+      type="image/webp"
+      fetchpriority="high"
+    />
+
     <!-- Bootstrap -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
@@ -38,6 +51,7 @@
       property="og:description"
       content="Conheça a missão, os encontros e os canais oficiais da Missão Casais Restaurados."
     />
+    <!-- Mantido em JPG por compatibilidade ampla em previews (WhatsApp/Meta) -->
     <meta
       property="og:image"
       content="https://www.casaisrestaurados.com.br/images/hero.jpg"
@@ -51,7 +65,7 @@
   <body
     data-bs-spy="scroll"
     data-bs-target="#mainNav"
-    data-bs-smooth-scroll="true"
+    data-bs-offset="90"
     tabindex="0"
   >
     <!-- NAV -->
@@ -92,7 +106,7 @@
               <a class="nav-link" href="#cursos">Cursos</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#depoimento">Depoimento</a>
+              <a class="nav-link" href="#depoimento">Depoimentos</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#contato">Contato</a>
@@ -146,11 +160,16 @@
 
           <div class="col-lg-6">
             <div class="hero-card shadow-lg rounded-4 overflow-hidden">
+              <!-- (Ação 01 + 02) WebP + prioridade de carregamento + dimensões fixas -->
               <img
                 class="w-100 h-100 object-fit-cover"
-                src="images/hero.jpg"
+                src="images/hero.webp"
                 alt="Comunidade reunida"
-                loading="lazy"
+                width="1600"
+                height="900"
+                loading="eager"
+                fetchpriority="high"
+                decoding="async"
               />
             </div>
           </div>
@@ -226,20 +245,22 @@
           <div class="col-12 col-md-4">
             <button
               type="button"
-              class="commemorative-trigger"
+              class="commemorative-trigger h-100 d-block"
               data-bs-toggle="modal"
               data-bs-target="#historyModal"
               aria-label="Abrir histórico da Missão Casais Restaurados"
             >
-              <div class="commemorative-card">
+              <div class="commemorative-card h-100">
                 <img
                   src="images/logo-12-anos.png"
                   alt="Missão Casais Restaurados – 12 anos"
                   class="commemorative-logo"
                   loading="lazy"
                 />
-                <span class="commemorative-label">
-                  12 anos de Missão <i class="bi bi-plus-circle ms-1"></i>
+                <span class="commemorative-label"> 12 anos de Missão </span>
+
+                <span class="commemorative-cta">
+                  Conheça nossa história <i class="bi bi-arrow-right ms-1"></i>
                 </span>
               </div>
             </button>
@@ -251,10 +272,10 @@
               href="https://diocesepetropolis.com.br/"
               target="_blank"
               rel="noopener"
-              class="commemorative-link"
+              class="commemorative-link h-100 d-block"
               aria-label="Acessar o site da Diocese de Petrópolis"
             >
-              <div class="commemorative-card">
+              <div class="commemorative-card h-100">
                 <img
                   src="images/logo-diocese-80-anos.png"
                   alt="Diocese de Petrópolis – 80 anos"
@@ -264,6 +285,11 @@
                 <span class="commemorative-label">
                   Diocese de Petrópolis – 80 anos
                   <i class="bi bi-box-arrow-up-right ms-1"></i>
+                </span>
+
+                <span class="commemorative-cta">
+                  Visitar o site da Diocese
+                  <i class="bi bi-arrow-right ms-1"></i>
                 </span>
               </div>
             </a>
@@ -400,7 +426,10 @@
     </section>
 
     <!-- CALENDÁRIO 2026 (IMAGEM LOCAL) -->
-    <section id="calendario" class="section-padding bg-light">
+    <section
+      id="calendario"
+      class="section-padding section-tight-bottom bg-light"
+    >
       <div class="container">
         <div class="row justify-content-center text-center mb-4">
           <div class="col-lg-8">
@@ -428,7 +457,7 @@
     </section>
 
     <!-- CURSOS (CARROSSEL) -->
-    <section id="cursos" class="section-padding bg-light">
+    <section id="cursos" class="section-padding section-tight-top bg-light">
       <div class="container">
         <div class="row justify-content-between align-items-end mb-3">
           <div class="col-lg-8">
@@ -919,21 +948,124 @@
       </div>
     </div>
 
-    <!-- DEPOIMENTO -->
+    <!-- DEPOIMENTOS (CARROSSEL) -->
     <section id="depoimento" class="section-padding bg-white">
       <div class="container">
-        <div class="row justify-content-center text-center">
-          <div class="col-lg-9">
+        <div class="row justify-content-center text-center mb-4">
+          <div class="col-lg-8">
             <i class="bi bi-chat-quote fs-1 text-brand"></i>
-            <h2 class="section-title">Um testemunho que nos move</h2>
-            <p class="lead text-muted">
-              “Após o encontro, sentimos o chamado para servir e hoje atuamos na
-              Pastoral da Crisma, ajudando jovens a fortalecerem sua fé. A
-              Missão Casais Restaurados transformou nossa família e nos motivou
-              a evangelizar outras.”
+            <h2 class="section-title">Depoimentos</h2>
+            <p class="text-muted mb-0">
+              Testemunhos de casais que viveram os encontros e seguiram servindo
+              com fé.
             </p>
-            <p class="text-muted small mb-0">— Léo e Jodelle</p>
           </div>
+        </div>
+
+        <div class="swiper testimonialsSwiper">
+          <div class="swiper-wrapper">
+            <!-- 1) Léo e Jodelle -->
+            <div class="swiper-slide">
+              <article class="testimonial-card">
+                <div class="testimonial-head">
+                  <img
+                    src="images/depoimento-leo-e-jodelle.webp"
+                    alt="Léo e Jodelle"
+                    class="testimonial-avatar"
+                    loading="lazy"
+                    width="72"
+                    height="72"
+                  />
+                  <div class="testimonial-meta">
+                    <h5 class="testimonial-name mb-0">Léo e Jodelle</h5>
+                  </div>
+                </div>
+
+                <p class="testimonial-text mb-0">
+                  “Após o encontro, sentimos o chamado para servir e hoje
+                  atuamos na Pastoral da Crisma, ajudando jovens a fortalecerem
+                  sua fé. A Missão Casais Restaurados transformou nossa família
+                  e nos motivou a evangelizar outras.”
+                </p>
+              </article>
+            </div>
+
+            <!-- 2) Carlos e Hellen -->
+            <div class="swiper-slide">
+              <article class="testimonial-card">
+                <div class="testimonial-head">
+                  <img
+                    src="images/depoimento-carlos-e-helen.webp"
+                    alt="Carlos e Hellen"
+                    class="testimonial-avatar"
+                    loading="lazy"
+                    width="72"
+                    height="72"
+                  />
+                  <div class="testimonial-meta">
+                    <h5 class="testimonial-name mb-0">Carlos e Hellen</h5>
+                  </div>
+                </div>
+
+                <p class="testimonial-text mb-0">
+                  “Deus nos preparou para buscar a santidade e formar uma
+                  família conforme o coração Dele.”
+                </p>
+              </article>
+            </div>
+
+            <!-- 3) Isabela e Pedro -->
+            <div class="swiper-slide">
+              <article class="testimonial-card">
+                <div class="testimonial-head">
+                  <img
+                    src="images/depoimento-isabela-e-pedro.webp"
+                    alt="Isabela e Pedro"
+                    class="testimonial-avatar"
+                    loading="lazy"
+                    width="72"
+                    height="72"
+                  />
+                  <div class="testimonial-meta">
+                    <h5 class="testimonial-name mb-0">Isabela e Pedro</h5>
+                  </div>
+                </div>
+
+                <p class="testimonial-text mb-0">
+                  “Não éramos nada na paróquia, e hoje coordenamos a acolhida e
+                  participamos do Terço dos Homens.”
+                </p>
+              </article>
+            </div>
+
+            <!-- 4) Marcelo e Bruna -->
+            <div class="swiper-slide">
+              <article class="testimonial-card">
+                <div class="testimonial-head">
+                  <img
+                    src="images/depoimento-marcelo-e-bruna.webp"
+                    alt="Marcelo e Bruna"
+                    class="testimonial-avatar"
+                    loading="lazy"
+                    width="72"
+                    height="72"
+                  />
+                  <div class="testimonial-meta">
+                    <h5 class="testimonial-name mb-0">Marcelo e Bruna</h5>
+                  </div>
+                </div>
+
+                <p class="testimonial-text mb-0">
+                  “A Missão Casais Restaurados mudou nossa vida, nos restaurou e
+                  nos fez entender o verdadeiro sentido do casamento.”
+                </p>
+              </article>
+            </div>
+          </div>
+
+          <div class="swiper-pagination"></div>
+          <div class="swiper-button-prev d-none d-lg-flex"></div>
+          <div class="swiper-button-next d-none d-lg-flex"></div>
         </div>
       </div>
     </section>
@@ -1014,6 +1146,24 @@
                   class="list-group-item list-group-item-action d-flex align-items-center gap-3 py-3"
                   target="_blank"
                   rel="noopener"
+                  href="https://www.youtube.com/c/Miss%C3%A3oCasaisRestaurados"
+                >
+                  <span class="social-icon yt"
+                    ><i class="bi bi-youtube"></i
+                  ></span>
+                  <div class="flex-grow-1">
+                    <div class="fw-semibold">YouTube</div>
+                    <small class="text-muted"
+                      >Pregações, formações e conteúdos da Missão</small
+                    >
+                  </div>
+                  <i class="bi bi-arrow-up-right"></i>
+                </a>
+
+                <a
+                  class="list-group-item list-group-item-action d-flex align-items-center gap-3 py-3"
+                  target="_blank"
+                  rel="noopener"
                   href="https://linktr.ee/missaocasaisrestaurados"
                 >
                   <span class="social-icon lt"
@@ -1040,8 +1190,7 @@
         class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-2"
       >
         <div class="text-muted small">
-          © <span id="year"></span> Missão Casais Restaurados — Presença
-          institucional
+          © <span id="year"></span> Missão Casais Restaurados
         </div>
         <div class="d-flex gap-3">
           <a class="text-muted" href="#home">Topo</a>
